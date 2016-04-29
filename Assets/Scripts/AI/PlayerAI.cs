@@ -8,6 +8,8 @@ using System.Collections.Generic;
 /// </summary>
 public class PlayerAI : MonoBehaviour, IListener {
 
+	public float bombCooldownTime = 2.0f;
+
 	private MapGenerator map;
 	private GameObject bombPrefab;
 
@@ -18,7 +20,8 @@ public class PlayerAI : MonoBehaviour, IListener {
 	private List<Vector3> currentPath;
 	private int currentPathIndex;
 	private bool dead = false;
-	private Vector3 respawnPosition;
+	private bool canDropBomb;
+	private float lastTimeDroppedABomb;
 
 	void Start() {
 		GameManager gameManager = GameObject.FindObjectOfType<GameManager> ();
@@ -31,7 +34,7 @@ public class PlayerAI : MonoBehaviour, IListener {
 		navAgent.SetDestination (transform.position);
 		animator = gameObject.GetComponent<Animator> ();
 		dead = false;
-		respawnPosition = transform.position;
+		canDropBomb = true;
 		// registering for the events
 		EventManager.Instance.AddListener (EVENT_TYPE.BOMB_EXPLODED, this);
 		EventManager.Instance.AddListener (EVENT_TYPE.BOMB_DEPLOY_COMMAND, this);
@@ -46,6 +49,17 @@ public class PlayerAI : MonoBehaviour, IListener {
 			return;
 		}
 		Move ();
+		CheckBombCooldown ();
+	}
+
+	void CheckBombCooldown() {
+		if (!canDropBomb) {
+			float delta = Time.time - lastTimeDroppedABomb;
+			if (delta > bombCooldownTime) {
+				canDropBomb = true;
+				EventManager.Instance.PostNotification (EVENT_TYPE.PLAYER_CAN_DROP_BOMB, this, gameObject);
+			}
+		}
 	}
 
 	/// <summary>
@@ -92,7 +106,7 @@ public class PlayerAI : MonoBehaviour, IListener {
 	/// </summary>
 	public void DeployBomb() {
 		Vector3 position = map.GetTileAlignedPosition (transform.position);
-		GameObject bomb = Instantiate (bombPrefab, position, Quaternion.identity) as GameObject;
+		GameObject bomb = Instantiate (bombPrefab, position, bombPrefab.transform.rotation) as GameObject;
 		EventManager.Instance.PostNotification (EVENT_TYPE.BOMB_DEPLOYED, this, bomb); 
 	}
 
@@ -167,8 +181,10 @@ public class PlayerAI : MonoBehaviour, IListener {
 			break;
 		case EVENT_TYPE.BOMB_DEPLOY_COMMAND:
 			player = (GameObject)param;
-			if (player != null && player.GetInstanceID () == gameObject.GetInstanceID ()) {
+			if (player != null && player.GetInstanceID () == gameObject.GetInstanceID () && canDropBomb) {
 				DeployBomb ();
+				lastTimeDroppedABomb = Time.time;
+				canDropBomb = false;
 			}
 			break;
 		}

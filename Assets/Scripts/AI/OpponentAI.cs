@@ -4,18 +4,24 @@ using System.Collections;
 /// <summary>
 /// Controls the Opponent's behaviour
 /// </summary>
-public class OpponentAI : MonoBehaviour {
+public class OpponentAI : MonoBehaviour, IListener {
 
 	public float timeToChangeDirection = 2.0f;
 	public float timeToDeployBomb = 1.0f;
 
+	private bool dead = false;
 	private float lastTimeChangedDirection = 0.0f;
 	private float lastTimeDeployedBomb = 0.0f;
 
 	void Start() {
+		EventManager.Instance.AddListener (EVENT_TYPE.PLAYER_DIED, this);
 	}
 
 	void Update() {
+
+		if (dead) {
+			return;
+		}
 
 		float deltaChangeDirection = Time.time - lastTimeChangedDirection;
 		float deltaDeployBomb = Time.time - lastTimeDeployedBomb;
@@ -44,6 +50,21 @@ public class OpponentAI : MonoBehaviour {
 			lastTimeDeployedBomb = Time.time;
 		}
 
+	}
+
+	/// <summary>
+	/// Handles the events
+	/// </summary>
+	public void OnEvent(EVENT_TYPE eventType, Component sender, System.Object param = null) {
+		GameObject playerWhoDied = null;
+		switch (eventType) {
+		case EVENT_TYPE.PLAYER_DIED:
+			playerWhoDied = (GameObject)param;
+			if(playerWhoDied != null && playerWhoDied.GetInstanceID () == gameObject.GetInstanceID ()) {
+				dead = true;
+			}
+			break;
+		}
 	}
 
 }

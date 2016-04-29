@@ -46,7 +46,7 @@ public class BombAI : MonoBehaviour {
 		Vector3 groundZero = new Vector3(bombPosition.x - offset , bombPosition.y, bombPosition.z);
 		if (!betweenWallsHorizontal) {
 			for (int i = 0; i <= numberOfExplosions; i++) {
-				explosions.Add (Instantiate (explosionAnimationPrefab, groundZero , Quaternion.identity) as GameObject);
+				explosions.Add (Instantiate (explosionAnimationPrefab, groundZero , explosionAnimationPrefab.transform.rotation) as GameObject);
 				groundZero.x += tileSize;
 				EventManager.Instance.PostNotification (EVENT_TYPE.BOMB_EXPLODED, this, groundZero);
 			}
@@ -56,13 +56,16 @@ public class BombAI : MonoBehaviour {
 			// creating explosions in the vertical
 			groundZero = new Vector3(bombPosition.x , bombPosition.y, bombPosition.z - offset);
 			for (int i = 0; i <= numberOfExplosions; i++) {
-				explosions.Add (Instantiate (explosionAnimationPrefab, groundZero , Quaternion.identity) as GameObject);
+				explosions.Add (Instantiate (explosionAnimationPrefab, groundZero , explosionAnimationPrefab.transform.rotation) as GameObject);
 				groundZero.z += tileSize;
 				EventManager.Instance.PostNotification (EVENT_TYPE.BOMB_EXPLODED, this, groundZero);
 			}
 		}
 		detonated = true;
 		timeCreation = Time.time;
+		// hiding bomb
+		MeshRenderer render = gameObject.GetComponentInChildren<MeshRenderer>();
+		render.enabled = false;
 	}
 
 	void DestroyExplosionsAndBomb() {

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 /// <summary>
-/// Manages the scores and the respawns
+/// Manages the scores, UI and the respawns
 /// </summary>
 public class GameManager : MonoBehaviour, IListener {
 
@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour, IListener {
 
 	public Text playerScoreLabel;
 	public Text opponentScoreLabel;
+	public Image bombIcon;
 	public float playerRespawnTime = 5.0f;
 
 	public GameObject bombPrefab;
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour, IListener {
 
 	void Start () {
 		EventManager.Instance.AddListener (EVENT_TYPE.PLAYER_DIED, this);	
+		EventManager.Instance.AddListener (EVENT_TYPE.PLAYER_CAN_DROP_BOMB, this);	
+		EventManager.Instance.AddListener (EVENT_TYPE.BOMB_DEPLOYED, this);	
 		playerRespawnPosition = player.transform.position;
 		opponentRespawnPosition = opponent.transform.position;
 	}
@@ -77,8 +80,13 @@ public class GameManager : MonoBehaviour, IListener {
 				playerScoreLabel.text = "You: " + playerScore;
 			}
 			break;
+		case EVENT_TYPE.PLAYER_CAN_DROP_BOMB:
+			bombIcon.enabled = true;
+			break;
+		case EVENT_TYPE.BOMB_DEPLOYED:
+			bombIcon.enabled = false;
+			break;
 		}
-
 	}
 
 	public MapGenerator GetMapGenerator() {
