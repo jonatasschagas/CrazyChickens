@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Elementals\Demo\Scripts\GE_Elementals_Demo.cs" />
      <Compile Include="Assets\Scripts\AI\BombAI.cs" />
+     <Compile Include="Assets\Scripts\AI\BombAudioAI.cs" />
      <Compile Include="Assets\Scripts\AI\GameManager.cs" />
      <Compile Include="Assets\Scripts\AI\OpponentAI.cs" />
      <Compile Include="Assets\Scripts\AI\PlayerAI.cs" />

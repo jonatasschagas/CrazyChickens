@@ -1,30 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerAudioAI : MonoBehaviour {
+public class PlayerAudioAI : MonoBehaviour, IListener {
 
-	private NavMeshAgent navAgent;
 	private AudioSource audioSource;
-	private Vector3 previousPosition;
-	private float lastSoundPlayedTime;
 
 	// Use this for initialization
 	void Start () {
-		navAgent = GetComponent<NavMeshAgent> ();
 		audioSource = GetComponent<AudioSource> ();
+		EventManager.Instance.AddListener (EVENT_TYPE.PLAYER_DIED, this);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		Vector3 curMove = transform.position - previousPosition;
-		float curSpeed = curMove.magnitude / Time.deltaTime;
-		previousPosition = transform.position;
-		float delta = Time.time - lastSoundPlayedTime;
-		if (curSpeed > 0.0f && !audioSource.isPlaying && delta > 0.1f) {
-			audioSource.Play ();
-			lastSoundPlayedTime = Time.time;
-		} else {
-			audioSource.Stop ();
+	/// <summary>
+	/// Handles the events
+	/// </summary>
+	public void OnEvent(EVENT_TYPE eventType, Component sender, System.Object param = null) {
+		GameObject player = null;
+		switch (eventType) {
+		case EVENT_TYPE.PLAYER_DIED:
+			player = (GameObject)param;
+			if (player != null && player.GetInstanceID () == gameObject.GetInstanceID ()) {
+				audioSource.Play ();
+			}
+			break;
 		}
+
 	}
+
 }

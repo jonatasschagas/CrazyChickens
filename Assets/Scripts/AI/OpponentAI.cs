@@ -9,11 +9,15 @@ public class OpponentAI : MonoBehaviour, IListener {
 	public float timeToChangeDirection = 2.0f;
 	public float timeToDeployBomb = 1.0f;
 
+	private MapGenerator map;
 	private bool dead = false;
 	private float lastTimeChangedDirection = 0.0f;
 	private float lastTimeDeployedBomb = 0.0f;
+	private GameObject lastBombNoticed;
 
 	void Start() {
+		GameManager gm = GameObject.FindObjectOfType<GameManager> () as GameManager;
+		map = gm.GetMapGenerator ();
 		EventManager.Instance.AddListener (EVENT_TYPE.PLAYER_DIED, this);
 	}
 
@@ -21,6 +25,16 @@ public class OpponentAI : MonoBehaviour, IListener {
 
 		if (dead) {
 			return;
+		}
+
+		// check if it is whithin range of the last bomb that was noticed
+		if (lastBombNoticed != null) {
+			bool isWithinBombRange = BombAI.IsWithinExplosionRange (lastBombNoticed.transform.position, transform.position, map);
+			if (isWithinBombRange) {
+				// force the change of direction
+				// to avoid the bomb
+				lastTimeChangedDirection = 0.0f;
+			}
 		}
 
 		float deltaChangeDirection = Time.time - lastTimeChangedDirection;
@@ -64,7 +78,15 @@ public class OpponentAI : MonoBehaviour, IListener {
 				dead = true;
 			}
 			break;
+		case EVENT_TYPE.BOMB_DEPLOYED:
+			// verifies if player was hit by the bomb
+			GameObject bomb = (GameObject)param;
+			if (bomb != null) {
+				lastBombNoticed = bomb;
+			}
+			break;
 		}
+
 	}
 
 }

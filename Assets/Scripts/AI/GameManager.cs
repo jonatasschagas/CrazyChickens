@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour, IListener {
 	private bool opponentDead = false;
 	private Vector3 playerRespawnPosition;
 	private Vector3 opponentRespawnPosition;
+	private AudioSource audioSource;
 
 	void Start () {
 		EventManager.Instance.AddListener (EVENT_TYPE.PLAYER_DIED, this);	
@@ -36,6 +37,8 @@ public class GameManager : MonoBehaviour, IListener {
 		EventManager.Instance.AddListener (EVENT_TYPE.BOMB_DEPLOYED, this);	
 		playerRespawnPosition = player.transform.position;
 		opponentRespawnPosition = opponent.transform.position;
+		audioSource = GetComponent<AudioSource> ();
+		audioSource.Play ();
 	}
 	
 	void Update () {
