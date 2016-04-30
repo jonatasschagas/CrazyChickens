@@ -94,7 +94,47 @@ public class MapGenerator : MonoBehaviour {
 		float offsetY = ((mapSize.y - 1.0f) * tileSize) / 2.0f;
 		int coordX = Mathf.RoundToInt((position.x + offsetX) / tileSize);
 		int coordY = Mathf.RoundToInt((position.z + offsetY) / tileSize);
-		return new Coord (coordX, coordY);
+		return allTileCoords[coordX * (int)mapSize.y + coordY ];
+	}
+
+	public enum TileDirection {
+		TILE_UP,
+		TILE_DOWN,
+		TILE_LEFT,
+		TILE_RIGHT
+	};
+
+	public Vector3 GetPositionNeightborTile(Vector3 position, TileDirection tileDirection) {
+		Coord coord = PositionToCoord (position);
+		if (coord != null) {
+			switch (tileDirection) {
+			case TileDirection.TILE_UP:
+				coord.y++;
+				if (coord.y < (int)mapSize.y) {
+					return CoordToPosition (coord.x, coord.y);
+				}
+				break;
+			case TileDirection.TILE_DOWN:
+				coord.y--;
+				if (coord.y >= 0) {
+					return CoordToPosition (coord.x, coord.y);
+				}
+				break;
+			case TileDirection.TILE_RIGHT:
+				coord.x++;
+				if (coord.x < (int)mapSize.x) {
+					return CoordToPosition (coord.x, coord.y);
+				}
+				break;
+			case TileDirection.TILE_LEFT:
+				coord.x--;
+				if (coord.x >= 0) {
+					return CoordToPosition (coord.x, coord.y);
+				}
+				break;
+			}
+		}
+		return Vector3.zero;
 	}
 
 	/// <summary>

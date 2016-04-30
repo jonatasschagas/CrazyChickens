@@ -132,14 +132,8 @@ public class PlayerAI : MonoBehaviour, IListener {
 		GameObject player = null;
 		switch (eventType) {
 		case EVENT_TYPE.BOMB_EXPLODED:
-			// verifies if player was hit by the bomb
-			Vector3 bombPosition = (Vector3)param;
-			Vector3 playerPosition = transform.position;
-			Coord bombCoord = map.PositionToCoord (bombPosition);
-			Coord playerCoord = map.PositionToCoord (playerPosition);
-			int xRes = playerCoord.x - bombCoord.x;
-			int yRes = playerCoord.y - bombCoord.y;
-			if (xRes == 0 && yRes == 0 && !dead) {
+			// verifying if player is in the tiles affected by the explosion
+			if (BombAI.IsWithinExplosionRange(sender.gameObject.transform.position, transform.position, map)) {
 				// if hit by the bomb the player dies
 				animator.SetFloat ("Speed_f", 0);
 				animator.SetBool ("Death_b", true);

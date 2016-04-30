@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Image Effects (Pro Only)\SSAOEffect.cs" />
      <None Include="Assets\Simple Town Pack\Changelog.txt" />
+     <None Include="Assets\cartoon_explosion_fire_smoke\readme.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SSAOShader.shader" />
      <None Include="Assets\SimpleCitizens\Changelog.txt" />
      <None Include="Assets\Elementals\Readme.txt" />

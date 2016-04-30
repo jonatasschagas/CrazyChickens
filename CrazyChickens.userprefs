@@ -1,14 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AdjustCamera.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Map/MapGenerator.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerAI.cs" Line="74" Column="28" />
-      <File FileName="Assets/Scripts/MapGenerator.cs" Line="81" Column="39" />
-      <File FileName="Assets/Editor/MapEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/MapEditor.cs" Line="11" Column="3" />
       <File FileName="Assets/SimpleSwipe/Scripts/SwipeControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BombController.cs" Line="31" Column="19" />
-      <File FileName="Assets/Scripts/ExplosionController.cs" Line="7" Column="43" />
-      <File FileName="Assets/Scripts/AdjustCamera.cs" Line="25" Column="10" />
+      <File FileName="Assets/Scripts/AI/PlayerAI.cs" Line="22" Column="28" />
+      <File FileName="Assets/Scripts/AI/OpponentAI.cs" Line="66" Column="10" />
+      <File FileName="Assets/Scripts/AI/GameManager.cs" Line="63" Column="2" />
+      <File FileName="Assets/Scripts/Map/MapGenerator.cs" Line="63" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -50,6 +50,8 @@
      <Compile Include="Assets\Scripts\AI\GameManager.cs" />
      <Compile Include="Assets\Scripts\AI\OpponentAI.cs" />
      <Compile Include="Assets\Scripts\AI\PlayerAI.cs" />
+     <Compile Include="Assets\Scripts\AI\PlayerAudioAI.cs" />
+     <Compile Include="Assets\Scripts\AI\TileAI.cs" />
      <Compile Include="Assets\Scripts\Controllers\AdjustCamera.cs" />
      <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Events\EventManager.cs" />
@@ -64,7 +66,9 @@
      <Compile Include="Assets\ThrowableCartoonBomb\Scripts\BombExplode.cs" />
      <Compile Include="Assets\ThrowableCartoonBomb\Scripts\BombThrow.cs" />
      <Compile Include="Assets\ThrowableCartoonBomb\Scripts\SmokeScript.cs" />
+     <Compile Include="Assets\cartoon_explosion_fire_smoke\Scripts\ParticleTester_cartoon_explosion_fire_smoke.cs" />
      <None Include="Assets\Simple Town Pack\Changelog.txt" />
+     <None Include="Assets\cartoon_explosion_fire_smoke\readme.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SSAOShader.shader" />
      <None Include="Assets\SimpleCitizens\Changelog.txt" />
      <None Include="Assets\Elementals\Readme.txt" />
