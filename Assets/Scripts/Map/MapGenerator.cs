@@ -94,7 +94,9 @@ public class MapGenerator : MonoBehaviour {
 		float offsetY = ((mapSize.y - 1.0f) * tileSize) / 2.0f;
 		int coordX = Mathf.RoundToInt((position.x + offsetX) / tileSize);
 		int coordY = Mathf.RoundToInt((position.z + offsetY) / tileSize);
-		return allTileCoords[coordX * (int)mapSize.y + coordY ];
+		//return allTileCoords[coordX * (int)mapSize.y + coordY ];
+		TILE_TYPE tileType = coordY % 2 != 0 && coordX > 0 && coordX % 2 != 0 && coordX < mapSize.x - 1 ? TILE_TYPE.WALL : TILE_TYPE.GROUND;
+		return new Coord(coordX, coordY, tileType, allTileCoords[coordX * (int)mapSize.y + coordY].tileObject);
 	}
 
 	public enum TileDirection {
