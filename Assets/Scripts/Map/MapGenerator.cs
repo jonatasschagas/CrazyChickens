@@ -8,7 +8,7 @@ using System;
 /// </summary>
 public class MapGenerator : MonoBehaviour {
 
-	public Transform obstaclePrefab;
+	public Transform[] obstaclePrefabs;
 	public Transform tilePrefab;
 	public Vector2 mapSize;
 	public GameObject pathFindingGrid;
@@ -58,7 +58,7 @@ public class MapGenerator : MonoBehaviour {
 		
 				// generating obstacle
 				if (y % 2 != 0 && x > 0 && x % 2 != 0 && x < mapSize.x - 1) {
-					Transform obstacle = Instantiate (obstaclePrefab, Vector3.zero, 
+					Transform obstacle = Instantiate (obstaclePrefabs[UnityEngine.Random.Range(0,3)], Vector3.zero, 
 						                     Quaternion.Euler (Vector3.right * 90)) as Transform;
 					obstacle.localScale = GetTileSize ();
 					obstacle.transform.position = tilePosition + Vector3.up * 0.5f * tileSize;

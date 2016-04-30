@@ -64,6 +64,7 @@
      <Compile Include="Assets\ThrowableCartoonBomb\Scripts\BombExplode.cs" />
      <Compile Include="Assets\ThrowableCartoonBomb\Scripts\BombThrow.cs" />
      <Compile Include="Assets\ThrowableCartoonBomb\Scripts\SmokeScript.cs" />
+     <None Include="Assets\Simple Town Pack\Changelog.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SSAOShader.shader" />
      <None Include="Assets\SimpleCitizens\Changelog.txt" />
      <None Include="Assets\Elementals\Readme.txt" />
