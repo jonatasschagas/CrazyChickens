@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\AI\BombAudioAI.cs" />
      <Compile Include="Assets\Scripts\AI\GameManager.cs" />
      <Compile Include="Assets\Scripts\AI\OpponentAI.cs" />
+     <Compile Include="Assets\Scripts\AI\PauseResumeAI.cs" />
      <Compile Include="Assets\Scripts\AI\PlayerAI.cs" />
      <Compile Include="Assets\Scripts\AI\PlayerAudioAI.cs" />
      <Compile Include="Assets\Scripts\AI\TileAI.cs" />

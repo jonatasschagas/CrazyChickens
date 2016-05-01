@@ -13,6 +13,7 @@ public class BombAI : MonoBehaviour {
 	public GameObject fireAnimationPrefab;
 	public float tileSize;
 	public static int numberOfExplosions = 6;
+	public GameObject fuse;
 
 	private MapGenerator map;
 	private float timeCreation;
@@ -27,6 +28,11 @@ public class BombAI : MonoBehaviour {
 	}
 	
 	void Update () {
+
+		if (PauseResumeAI.Instance.IsGamePaused ()) {
+			return;
+		}
+
 		if (!detonated) {
 			float delta = Time.time - timeCreation;
 			if (delta >= timeToExplode) {
@@ -74,6 +80,9 @@ public class BombAI : MonoBehaviour {
 		EventManager.Instance.PostNotification (EVENT_TYPE.BOMB_EXPLODED, this, numberOfExplosions);
 		detonated = true;
 		timeCreation = Time.time;
+		// destroying the fuse
+		// since the bomb has detonated
+		Destroy (fuse);
 		// hiding bomb
 		MeshRenderer render = gameObject.GetComponentInChildren<MeshRenderer>();
 		render.enabled = false;

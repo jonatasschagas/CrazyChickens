@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour, IListener {
 	public MapGenerator map;
 
 	public Text playerScoreLabel;
-	public Text opponentScoreLabel;
 	public Image bombIcon;
 	public float playerRespawnTime = 5.0f;
+
+	public GameObject pauseButton;
+	public GameObject resumeButton;
 
 	public GameObject bombPrefab;
 	public GameObject playerPrefab;
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour, IListener {
 		opponentRespawnPosition = opponent.transform.position;
 		audioSource = GetComponent<AudioSource> ();
 		audioSource.Play ();
+		playerScoreLabel.text = "You: " + playerScore + " | Opponent: " + opponentScore;
 	}
 	
 	void Update () {
@@ -75,12 +78,12 @@ public class GameManager : MonoBehaviour, IListener {
 				opponentScore++;
 				playerDead = true;
 				timePlayerDied = Time.time;
-				opponentScoreLabel.text = "Opponent: " + opponentScore;
+				playerScoreLabel.text = "You: " + playerScore + " | Opponent: " + opponentScore;
 			} else if(playerWhoDied != null && playerWhoDied.GetInstanceID () == opponent.GetInstanceID ()) {
 				playerScore++;
 				opponentDead = true;
 				timeOpponentDied = Time.time;
-				playerScoreLabel.text = "You: " + playerScore;
+				playerScoreLabel.text = "You: " + playerScore + " | Opponent: " + opponentScore;
 			}
 			break;
 		case EVENT_TYPE.PLAYER_CAN_DROP_BOMB:
@@ -98,6 +101,18 @@ public class GameManager : MonoBehaviour, IListener {
 
 	public GameObject GetBombPrefab() {
 		return bombPrefab;
+	}
+
+	public void OnPauseBtnClicked() {
+		EventManager.Instance.PostNotification (EVENT_TYPE.GAME_PAUSED, this, this);
+		pauseButton.active = false;
+		resumeButton.active = true;
+	}
+
+	public void OnResumeBtnClicked() {
+		EventManager.Instance.PostNotification (EVENT_TYPE.GAME_STARTED, this, this);
+		pauseButton.active = true;
+		resumeButton.active = false;
 	}
 
 }

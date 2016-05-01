@@ -45,11 +45,29 @@ public class PlayerAI : MonoBehaviour, IListener {
 	}
 
 	void Update() {
+
+		if (PauseResumeAI.Instance.IsGamePaused ()) {
+			Pause ();
+			return;
+		} else {
+			Resume ();
+		}
+
 		if (dead) {
 			return;
 		}
 		Move ();
 		CheckBombCooldown ();
+	}
+
+	void Pause() {
+		navAgent.velocity = Vector3.zero;
+		animator.SetFloat ("Speed_f", 0.0f);
+		navAgent.Stop ();
+	}
+
+	void Resume() {
+			navAgent.Resume ();
 	}
 
 	void CheckBombCooldown() {

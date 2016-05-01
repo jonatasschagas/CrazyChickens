@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
+		if (PauseResumeAI.Instance.IsGamePaused ()) {
+			return;
+		}
+
 		TapDetection ();
 	}
 

@@ -2,6 +2,8 @@
 using System.Collections;
 
 public enum EVENT_TYPE {
+	GAME_STARTED,
+	GAME_PAUSED,
 	BOMB_DEPLOY_COMMAND,
 	BOMB_DEPLOYED,
 	BOMB_EXPLODED,

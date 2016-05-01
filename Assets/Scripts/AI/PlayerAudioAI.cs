@@ -5,7 +5,6 @@ public class PlayerAudioAI : MonoBehaviour, IListener {
 
 	private AudioSource audioSource;
 
-	// Use this for initialization
 	void Start () {
 		audioSource = GetComponent<AudioSource> ();
 		EventManager.Instance.AddListener (EVENT_TYPE.PLAYER_DIED, this);

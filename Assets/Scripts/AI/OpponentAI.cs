@@ -23,6 +23,10 @@ public class OpponentAI : MonoBehaviour, IListener {
 
 	void Update() {
 
+		if (PauseResumeAI.Instance.IsGamePaused ()) {
+			return;
+		} 
+
 		if (dead) {
 			return;
 		}
