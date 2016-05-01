@@ -31,7 +31,7 @@ public class TileAI : MonoBehaviour, IListener {
 			float timeToExplode = bomb.GetComponent<BombAI> ().timeToExplode;
 			bool isWithinBombRange = BombAI.IsWithinExplosionRange (bomb.transform.position, transform.position, map);
 			// verifying if player is in the tiles affected by the explosion
-			if (isWithinBombRange) {
+			if (isWithinBombRange && tileBombRange == null) {
 				Vector3 tilePos = transform.position;
 				tilePos.y += 0.1f;
 				// highlight tile that will be affected by the explosion
@@ -40,8 +40,8 @@ public class TileAI : MonoBehaviour, IListener {
 			}
 			break;
 		case EVENT_TYPE.BOMB_EXPLODED:
-			// verifying if player is in the tiles affected by the explosion
-			if (BombAI.IsWithinExplosionRange (sender.gameObject.transform.position, transform.position, map) && tileBombRange != null) {
+			Vector3 bombPosition = (Vector3)param;
+			if (BombAI.IsWithinExplosionRange (bombPosition, transform.position, map) && tileBombRange != null) {
 				Destroy (tileBombRange);
 			}
 			break;

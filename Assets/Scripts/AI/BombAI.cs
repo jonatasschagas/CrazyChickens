@@ -77,7 +77,7 @@ public class BombAI : MonoBehaviour {
 				explosions.Add (fireTileDown);
 			}
 		}
-		EventManager.Instance.PostNotification (EVENT_TYPE.BOMB_EXPLODED, this, numberOfExplosions);
+		EventManager.Instance.PostNotification (EVENT_TYPE.BOMB_EXPLODED, this, transform.position);
 		detonated = true;
 		timeCreation = Time.time;
 		// destroying the fuse
