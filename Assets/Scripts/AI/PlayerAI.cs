@@ -15,7 +15,7 @@ public class PlayerAI : MonoBehaviour, IListener {
 
 	private Vector3 prevDirection = Vector3.zero;
 	private Vector3 moveDirection = Vector3.zero;
-	private NavMeshAgent navAgent;
+	private UnityEngine.AI.NavMeshAgent navAgent;
 	private Animator animator;
 	private List<Vector3> currentPath;
 	private int currentPathIndex;
@@ -30,7 +30,7 @@ public class PlayerAI : MonoBehaviour, IListener {
 		// initializing vars
 		moveDirection = Vector3.left;
 		prevDirection = moveDirection;
-		navAgent = gameObject.GetComponent<NavMeshAgent> ();
+		navAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		navAgent.SetDestination (transform.position);
 		animator = gameObject.GetComponent<Animator> ();
 		dead = false;

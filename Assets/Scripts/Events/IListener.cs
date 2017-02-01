@@ -2,6 +2,9 @@
 using System.Collections;
 
 public enum EVENT_TYPE {
+	CONNECT,
+	PLAYER_CONNECTED,
+	START_GAME,
 	GAME_STARTED,
 	GAME_PAUSED,
 	BOMB_DEPLOY_COMMAND,

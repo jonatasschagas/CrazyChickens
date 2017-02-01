@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_4;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;ENABLE_RUNTIME_GI;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_NETWORK;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_TEXTUREID_MAP;PLAYERCONNECTION_LISTENS_FIXED_PORT;DEBUGGER_LISTENS_FIXED_PORT;PLATFORM_SUPPORTS_ADS_ID;SUPPORT_ENVIRONMENT_VARIABLES;PLATFORM_SUPPORTS_PROFILER;PLATFORM_HAS_NO_SUPPORT_FOR_BUCKET_ALLOCATOR;STRICTCPP_NEW_DELETE_SIGNATURES;WWW_USE_CURL;HAS_NEON_SKINNIG;UNITY_INPUT_SIMULATE_EVENTS;PLATFORM_ALWAYS_USES_STDOUT_FOR_LOG;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;UNITY_IOS;UNITY_IPHONE;UNITY_IPHONE_API;SUPPORT_MULTIPLE_DISPLAYS;ENABLE_IL2CPP;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_IOS_ON_DEMAND_RESOURCES;ENABLE_IOS_APP_SLICING</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_0;UNITY_5_5;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VIDEO;ENABLE_VR;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -36,49 +36,134 @@
     <Reference Include="System" />
     <Reference Include="System.XML" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Elementals\Demo\Scripts\GE_Elementals_Demo.cs" />
+     <Compile Include="Assets\JSON\JSONObject.cs" />
+     <Compile Include="Assets\JSON\JSONTemplates.cs" />
+     <Compile Include="Assets\JSON\VectorTemplates.cs" />
      <Compile Include="Assets\Scripts\AI\BombAI.cs" />
      <Compile Include="Assets\Scripts\AI\BombAudioAI.cs" />
-     <Compile Include="Assets\Scripts\AI\GameManager.cs" />
      <Compile Include="Assets\Scripts\AI\OpponentAI.cs" />
      <Compile Include="Assets\Scripts\AI\PauseResumeAI.cs" />
      <Compile Include="Assets\Scripts\AI\PlayerAI.cs" />
      <Compile Include="Assets\Scripts\AI\PlayerAudioAI.cs" />
      <Compile Include="Assets\Scripts\AI\TileAI.cs" />
+     <Compile Include="Assets\Scripts\Buttons\ConnectToServerButton.cs" />
+     <Compile Include="Assets\Scripts\Commands\ActionCommandFactory.cs" />
+     <Compile Include="Assets\Scripts\Commands\CommandNames.cs" />
+     <Compile Include="Assets\Scripts\Commands\CommandTranslator.cs" />
+     <Compile Include="Assets\Scripts\Commands\PlayerCommandFactory.cs" />
      <Compile Include="Assets\Scripts\Controllers\AdjustCamera.cs" />
      <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\StartMenuController.cs" />
      <Compile Include="Assets\Scripts\Events\EventManager.cs" />
      <Compile Include="Assets\Scripts\Events\IListener.cs" />
+     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\SocketManager.cs" />
      <Compile Include="Assets\Scripts\Map\Coord.cs" />
      <Compile Include="Assets\Scripts\Map\MapGenerator.cs" />
      <Compile Include="Assets\Scripts\Pathfinder\Node.cs" />
      <Compile Include="Assets\Scripts\Pathfinder\NodeComparer.cs" />
      <Compile Include="Assets\Scripts\Pathfinder\PathFinder.cs" />
      <Compile Include="Assets\Scripts\Pathfinder\SortedCostNodeList.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Collections\TCollections.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Collections\THashSet.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Commands\PlayerMoveCommand.cs" />
+     <Compile Include="Assets\Scripts\Thrift\FlushCommandsRequest.cs" />
+     <Compile Include="Assets\Scripts\Thrift\FlushCommandsResponse.cs" />
+     <Compile Include="Assets\Scripts\Thrift\GameCommand.cs" />
+     <Compile Include="Assets\Scripts\Thrift\GameService.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Properties\AssemblyInfo.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TAbstractBase.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TBase.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TBase64Utils.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TBinaryProtocol.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TCompactProtocol.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TField.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TJSONProtocol.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TList.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TMap.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TMessage.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TMessageType.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TMultiplexedProcessor.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TMultiplexedProtocol.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TProtocol.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TProtocolDecorator.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TProtocolException.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TProtocolFactory.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TProtocolUtil.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TSet.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TStruct.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Protocol\TType.cs" />
+     <Compile Include="Assets\Scripts\Thrift\PublishCommandRequest.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Server\TServer.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Server\TServerEventHandler.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Server\TSimpleServer.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Server\TThreadPoolServer.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Server\TThreadedServer.cs" />
+     <Compile Include="Assets\Scripts\Thrift\TApplicationException.cs" />
+     <Compile Include="Assets\Scripts\Thrift\TException.cs" />
+     <Compile Include="Assets\Scripts\Thrift\TProcessor.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TBufferedTransport.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TFramedTransport.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TMemoryBuffer.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TNamedPipeClientTransport.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TNamedPipeServerTransport.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TServerSocket.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TServerTransport.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TSilverlightSocket.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TSocket.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TStreamTransport.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TTLSServerSocket.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TTLSSocket.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TTransport.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TTransportException.cs" />
+     <Compile Include="Assets\Scripts\Thrift\Transport\TTransportFactory.cs" />
      <Compile Include="Assets\SimpleSwipe\Scripts\SwipeControl.cs" />
      <Compile Include="Assets\ThrowableCartoonBomb\Scripts\BombExplode.cs" />
      <Compile Include="Assets\ThrowableCartoonBomb\Scripts\BombThrow.cs" />
      <Compile Include="Assets\ThrowableCartoonBomb\Scripts\SmokeScript.cs" />
      <Compile Include="Assets\cartoon_explosion_fire_smoke\Scripts\ParticleTester_cartoon_explosion_fire_smoke.cs" />
+     <None Include="Assets\Fantasy Skybox FREE\Readme.txt" />
+     <None Include="Assets\JSON\readme.txt" />
      <None Include="Assets\Simple Town Pack\Changelog.txt" />
      <None Include="Assets\cartoon_explosion_fire_smoke\readme.txt" />
+     <None Include="Assets\Fantasy Skybox FREE\Fog and Ambient reference.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SSAOShader.shader" />
      <None Include="Assets\SimpleCitizens\Changelog.txt" />
      <None Include="Assets\Elementals\Readme.txt" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PlaymodeTestsRunner">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VR">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
